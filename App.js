@@ -14,6 +14,7 @@ import myPage from "./pages/myPage";
 import aroundPage from "./pages/aroundPage";
 import orderPage from "./pages/orderPage";
 
+//这里不能用TabBavigator
 const pages = createBottomTabNavigator({
     home:{screen:homePage,
           navigationOptions:{
@@ -58,9 +59,11 @@ const pages = createBottomTabNavigator({
         tabBarOptions:{
           showIcon:true,
             showLabel:true,
+            activeTintColor:'black',
+            activeBackgroundColor:'whitesmoke',
             style:{
               backgroundColor:'white',
-                height: 80
+                height: 55,
             }
         },
         labelStyle:{
