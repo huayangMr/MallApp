@@ -3,6 +3,10 @@ import {View, Image, Text, StyleSheet, TextInput, ScrollView,PermissionsAndroid}
 import Swiper from 'react-native-swiper';
 
 var Geolocation = require('Geolocation');
+var Dimensions = require('Dimensions');
+
+const {width,height,scale} = Dimensions.get('window');
+
 export default class homePage extends Component {
     getLocation(){
         PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
@@ -94,12 +98,13 @@ export default class homePage extends Component {
                 <View>
                     <ScrollView>
                         <Swiper style={styles.banner}
-                                height={200}//高度
+                                height={height/6}//高度
                                 loop={true}//最后一张和第一张循环
                                 autoplay={true}//自动轮播
                                 autoplayTimeout={5}//间隔时间
                                 horizontal={true}//水平方向，false竖直方向
                                 showPagination={false}//展示小圆点
+                                paginationStyle={{bottom:5}}
                         >
                             <Image style={styles.banner_img} source={{uri:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534849993575&di=e043de274022833c7cb1a127cf0f8077&imgtype=0&src=http%3A%2F%2Fattach.zhiyoo.com%2Fforum%2F201303%2F30%2F16392363kvt13er39xk1k3.jpg'}}/>
                             <Image style={styles.banner_img} source={{uri:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534849993561&di=81d4263f021562ec51640e68cadf3962&imgtype=0&src=http%3A%2F%2Fp3.gexing.com%2FG1%2FM00%2FB9%2F56%2FrBACFFaM_VfRWJE0AAlNClgKv_o422.jpg'}}/>
@@ -190,7 +195,7 @@ const styles = StyleSheet.create(
             marginTop: 4
         },
         banner:{marginTop:1,backgroundColor:'orange'},
-        banner_img:{height:200,width:420},
+        banner_img:{height:height/6,width:width},
         search_right_img: {height: 35, width: 35},
         search_right_input: {width: 200, padding: 0},
     }
