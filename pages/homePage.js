@@ -76,17 +76,6 @@ export default class homePage extends Component {
         }
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start'}}>
-                <ActionButton position='left' verticalOrientation='up' buttonColor="rgba(231,76,60,1)">
-                    <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
-                        <Icon name="md-create" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
-                        <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
-                        <Icon name="md-done-all" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                </ActionButton>
                 <View style={styles.search}>
                     <View style={styles.search_left}>
                         <View>
@@ -102,18 +91,6 @@ export default class homePage extends Component {
                         <TextInput underlineColorAndroid="transparent" style={styles.search_right_input}
                                    placeholder={'七夕'}/>
                     </View>
-                    {/*<View style={{width:50,height:50,backgroundColor:'white'}}>
-                        <Text>11</Text>
-                        <ActionButton offsetX={0} buttonColor="rgba(231,76,60,1)">
-                            <ActionButton.Item title="add">
-                                <Text>1</Text>
-                            </ActionButton.Item>
-                            <ActionButton.Item title="delete">
-                                <Text>2</Text>
-                            </ActionButton.Item>
-                        </ActionButton>
-                    </View>*/}
-
                 </View>
                 <View>
                     <ScrollView>
@@ -172,6 +149,17 @@ export default class homePage extends Component {
                         </View>
                     </ScrollView>
                 </View>
+                <ActionButton position='right' verticalOrientation='up' buttonColor="rgba(231,76,60,1)">
+                    <ActionButton.Item size={66} buttonColor='#9b59b6' title="搜索" onPress={() => console.log("notes tapped!")}>
+                        <Icon name="md-search" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item size={66} buttonColor='#3498db' title="扫一扫" onPress={() => {}}>
+                        <Icon name="md-qr-scanner" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item size={66} buttonColor='#1abc9c' title="二维码" onPress={() => {}}>
+                        <Icon name="md-barcode" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                </ActionButton>
             </View>
         );
     }
@@ -208,8 +196,9 @@ const styles = StyleSheet.create(
         ads:{width:width,height:height/4,flexDirection:'row',justifyContent:'center'},
         ads_child:{margin:2,width:width/1.8,height:height/4,backgroundColor:'white'},
         actionButtonIcon: {
-            fontSize: 20,
-            height: 22,
+            fontSize: 30,
+            width:30,
+            height: 30,
             color: 'white',
         },
     }
