@@ -1,6 +1,9 @@
 import React, {Component} from "react";
-import {View, Image, Text, StyleSheet, TextInput, ScrollView,PermissionsAndroid} from "react-native";
+import {TouchableHighlight,View, Image, Text, StyleSheet, TextInput, ScrollView,PermissionsAndroid,Button} from "react-native";
 import Swiper from 'react-native-swiper';
+import ImageButton from '../util/ImageButton';
+import ActionButton from 'react-native-action-button';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 var Geolocation = require('Geolocation');
 var Dimensions = require('Dimensions');
@@ -12,15 +15,6 @@ export default class homePage extends Component {
         PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
         var latitude = null;
         var longitude = null;
-        /*  Geolocation.getCurrentPosition()
-              .then(data=>{
-                  latitude = data.latitude,
-                      longitude =data.longitude
-                  console.error(latitude);
-              })
-              .catch(e=>{
-                  console.error(e,"位置获取异常")
-              })*/
         Geolocation.getCurrentPosition(
             location=>{
                 latitude = location.coords.latitude;
@@ -32,7 +26,6 @@ export default class homePage extends Component {
                 console.error('定位异常')
             }
         )
-        //return "http://api.yytianqi.com/observe?city=" + latitude + "," + longitude + "&key=22g6n6ttv8p86ar4";
     }
 
     constructor() {
@@ -66,6 +59,10 @@ export default class homePage extends Component {
         this.getLocation();
     }
 
+    alertButton(){
+        alert("别点我");
+    }
+
     render() {
         var imgUrl = null;
         if (this.state.status == '晴') {
@@ -79,6 +76,17 @@ export default class homePage extends Component {
         }
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'flex-start'}}>
+                <ActionButton position='left' verticalOrientation='up' buttonColor="rgba(231,76,60,1)">
+                    <ActionButton.Item buttonColor='#9b59b6' title="New Task" onPress={() => console.log("notes tapped!")}>
+                        <Icon name="md-create" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item buttonColor='#3498db' title="Notifications" onPress={() => {}}>
+                        <Icon name="md-notifications-off" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                    <ActionButton.Item buttonColor='#1abc9c' title="All Tasks" onPress={() => {}}>
+                        <Icon name="md-done-all" style={styles.actionButtonIcon} />
+                    </ActionButton.Item>
+                </ActionButton>
                 <View style={styles.search}>
                     <View style={styles.search_left}>
                         <View>
@@ -94,6 +102,18 @@ export default class homePage extends Component {
                         <TextInput underlineColorAndroid="transparent" style={styles.search_right_input}
                                    placeholder={'七夕'}/>
                     </View>
+                    {/*<View style={{width:50,height:50,backgroundColor:'white'}}>
+                        <Text>11</Text>
+                        <ActionButton offsetX={0} buttonColor="rgba(231,76,60,1)">
+                            <ActionButton.Item title="add">
+                                <Text>1</Text>
+                            </ActionButton.Item>
+                            <ActionButton.Item title="delete">
+                                <Text>2</Text>
+                            </ActionButton.Item>
+                        </ActionButton>
+                    </View>*/}
+
                 </View>
                 <View>
                     <ScrollView>
@@ -110,65 +130,46 @@ export default class homePage extends Component {
                             <Image style={styles.banner_img} source={{uri:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534849993561&di=81d4263f021562ec51640e68cadf3962&imgtype=0&src=http%3A%2F%2Fp3.gexing.com%2FG1%2FM00%2FB9%2F56%2FrBACFFaM_VfRWJE0AAlNClgKv_o422.jpg'}}/>
                             <Image style={styles.banner_img} source={{uri:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1534849993573&di=3aae7f6e4f30f4f31eb1b614a82b93a4&imgtype=0&src=http%3A%2F%2Fpic.90sjimg.com%2Fback_pic%2Fqk%2Fback_origin_pic%2F00%2F03%2F88%2Fdc98489c7cd843578f414f0f470f9995.png'}}/>
                         </Swiper>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
-                        <Text>1</Text>
+                        <View style={styles.kind_first}>
+                            <ImageButton name={"美食"} style={styles.view_img} img={require('../img/kinds/food.png')} method={this.alertButton}/>
+                            <ImageButton name={"电影"} style={styles.view_img} img={require('../img/kinds/movie.png')} method={this.alertButton}/>
+                            <ImageButton name={"酒店"} style={styles.view_img} img={require('../img/kinds/jiudian.png')} method={this.alertButton}/>
+                            <ImageButton name={"休闲"} style={styles.view_img} img={require('../img/kinds/xiuxian.png')} method={this.alertButton}/>
+                            <ImageButton name={"外卖"} style={styles.view_img} img={require('../img/kinds/waimai.png')} method={this.alertButton}/>
+                        </View>
+                        <View style={styles.kind_second}>
+                            <ImageButton name={"美发"} style={styles.view_img2} img={require('../img/kinds/meifa.png')} method={this.alertButton}/>
+                            <ImageButton name={"闪购"} style={styles.view_img2} img={require('../img/kinds/天天闪购.png')} method={this.alertButton}/>
+                            <ImageButton name={"旅游"} style={styles.view_img2} img={require('../img/kinds/旅游主题_沙滩.png')} method={this.alertButton}/>
+                            <ImageButton name={"机票"} style={styles.view_img2} img={require('../img/kinds/旅游主题_飞机票.png')} method={this.alertButton}/>
+                            <ImageButton name={"教育"} style={styles.view_img2} img={require('../img/kinds/培训.png')} method={this.alertButton}/>
+                        </View>
+                        <View style={styles.kind_second}>
+                            <ImageButton name={"景点"} style={styles.view_img2} img={require('../img/kinds/景点.png')} method={this.alertButton}/>
+                            <ImageButton name={"装修"} style={styles.view_img2} img={require('../img/kinds/装修.png')} method={this.alertButton}/>
+                            <ImageButton name={"跑腿"} style={styles.view_img2} img={require('../img/kinds/跑步.png')} method={this.alertButton}/>
+                            <ImageButton name={"信用卡"} style={styles.view_img2} img={require('../img/kinds/信用卡.png')} method={this.alertButton}/>
+                            <ImageButton name={"全部分类"} style={styles.view_img2} img={require('../img/kinds/分类管理.png')} method={this.alertButton}/>
+                        </View>
+                        <View style={{width:width,marginTop:10,marginBottom: 10}}>
+                            <Text style={{fontSize:13,textAlign: 'center',color:'gray'}}>—— 猜 你 喜 欢 ——</Text>
+                        </View>
+                        <View style={styles.ads}>
+                            <View style={styles.ads_child}>
+                                <Image style={{resizeMode:'contain',flex:1}} source={{uri:'http://imgsrc.baidu.com/image/c0%3Dpixel_huitu%2C0%2C0%2C294%2C40/sign=c0bb42321430e924dba9947125700b6a/4e4a20a4462309f757e1f228790e0cf3d7cad67a.jpg'}}/>
+                            </View>
+                            <View style={styles.ads_child}>
+                                <Image style={{resizeMode:'contain',flex:1}} source={{uri:'http://img.zyoulun.com/uploads/images/2014/06/10/9002d839a747f3869cd0ad74bee69a74.jpg'}}/>
+                            </View>
+                        </View>
+                        <View style={styles.ads}>
+                            <View style={styles.ads_child}>
+                                <Image style={{resizeMode:'contain',flex:1}} source={{uri:'http://www.haohead.com/z/uploads/attachment/9e/e9/a951be018db87156.jpg'}}/>
+                            </View>
+                            <View style={styles.ads_child}>
+                                <Image style={{resizeMode:'contain',flex:1}} source={{uri:'http://img.79.com/TJW/201705/1493973898_785542.jpg'}}/>
+                            </View>
+                        </View>
                     </ScrollView>
                 </View>
             </View>
@@ -178,7 +179,7 @@ export default class homePage extends Component {
 
 const styles = StyleSheet.create(
     {
-        search: {height: 45, backgroundColor: 'orange', flexDirection: 'row', justifyContent: 'space-between'},
+        search: {height: 45, backgroundColor: '#FF8503', flexDirection: 'row', justifyContent: 'space-between'},
         search_left: {flex: 2, flexDirection: 'row', justifyContent: 'flex-start', marginLeft: 15},
         search_left_img: {width: 35, height: 35},
         search_left_msg:{marginTop: 5, marginLeft: 10},
@@ -194,9 +195,22 @@ const styles = StyleSheet.create(
             borderRadius: 45,
             marginTop: 4
         },
+        scrow_view:{backgroundColor:'white'},
         banner:{marginTop:1,backgroundColor:'orange'},
         banner_img:{height:height/6,width:width},
         search_right_img: {height: 35, width: 35},
         search_right_input: {width: 200, padding: 0},
+        kind_first:{flex:1,flexDirection:'row',justifyContent:'space-between',width:width,height:height/6,backgroundColor:'white',borderBottomWidth:1},
+        kind_second:{flex:1,flexDirection:'row',justifyContent:'space-between',width:width,height:height/7,backgroundColor:'white'},
+        button_around:{height:height/8,width:width/5,borderRadius: 50,borderWidth: 1},
+        view_img:{marginLeft:19,width:width/10,height:height/15,backgroundColor: 'orange',borderRadius:60,flexDirection: 'column',justifyContent: 'center',alignItems: 'center'},
+        view_img2:{marginLeft:23,width:width/12,height:height/17,borderRadius:60,flexDirection: 'column',justifyContent: 'center',alignItems: 'center'},
+        ads:{width:width,height:height/4,flexDirection:'row',justifyContent:'center'},
+        ads_child:{margin:2,width:width/1.8,height:height/4,backgroundColor:'white'},
+        actionButtonIcon: {
+            fontSize: 20,
+            height: 22,
+            color: 'white',
+        },
     }
 )
