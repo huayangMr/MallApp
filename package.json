@@ -11,6 +11,7 @@
     "react-native": "^0.55.4",
     "react-native-action-button": "^2.8.4",
     "react-native-baidu-map": "^0.6.0",
+    "react-native-qrcode": "^0.2.7",
     "react-native-swiper": "^1.5.13",
     "react-native-textinput-effects": "^0.4.2",
     "react-native-vector-icons": "^5.0.0",

@@ -8,11 +8,12 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View,Image} from 'react-native';
-import {createBottomTabNavigator} from 'react-navigation';
+import {createBottomTabNavigator, StackNavigator} from 'react-navigation';
 import homePage from "./pages/homePage";
 import myPage from "./pages/myPage";
 import aroundPage from "./pages/aroundPage";
 import orderPage from "./pages/orderPage";
+import {adCodePage} from "./pages/homes/adCodePage";
 
 //这里不能用TabBavigator
 const pages = createBottomTabNavigator({
@@ -75,6 +76,8 @@ const pages = createBottomTabNavigator({
         animationEnabled:true
     }
 )
+
+
 
 export default pages;
 
