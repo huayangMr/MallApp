@@ -17,6 +17,9 @@ import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {StackNavigator} from 'react-navigation';
 import adCodePage from "./homes/adCodePage";
+import qrcodeScanner from "./homes/qrcodeScanner";
+import AwesomeAlert from 'react-native-awesome-alerts';
+import SplashScreen from 'rn-splash-screen';
 
 var Geolocation = require('Geolocation');
 var Dimensions = require('Dimensions');
@@ -24,6 +27,13 @@ var Dimensions = require('Dimensions');
 const {width, height, scale} = Dimensions.get('window');
 
 class homePage extends Component {
+    showAlert(msg){
+        this.setState({isShow:true,message:msg})
+    }
+    hideAlert(){
+        this.setState({isShow:false})
+    }
+
     getLocation() {
         PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION);
         var latitude = null;
@@ -36,7 +46,7 @@ class homePage extends Component {
                 this.getWeather(reqUrl);
             },
             error => {
-                console.error('定位异常')
+               this.showAlert("定位异常")
             }
         )
     }
@@ -44,7 +54,8 @@ class homePage extends Component {
     searchBaidu() {
         Linking.openURL("https://www.baidu.com")
             .catch((error) => {
-                console.error("网络错误")
+                this.showAlert("网络错误")
+               // console.error("网络错误")
             })
     }
 
@@ -54,7 +65,9 @@ class homePage extends Component {
             city: '重庆',
             tempreture: '27',
             status: '阴天',
-            reqUrl: '11'
+            reqUrl: '11',
+            isShow:false,
+            message:'开发人员未填写弹窗内容'
         }
     }
 
@@ -71,16 +84,17 @@ class homePage extends Component {
                 });
             })
             .catch(error => {
-                console.error("获取天气服务异常")
+                this.showAlert("获取天气服务异常")
             })
     }
 
     componentDidMount() {
+        SplashScreen.hide();//将启动页隐藏
         this.getLocation();
     }
 
     alertButton() {
-        alert("别点我");
+       this.showAlert("功能开发中...")
     }
 
     render() {
@@ -132,39 +146,39 @@ class homePage extends Component {
                         </Swiper>
                         <View style={styles.kind_first}>
                             <ImageButton name={"美食"} style={styles.view_img} img={require('../img/kinds/food.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"电影"} style={styles.view_img} img={require('../img/kinds/movie.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"酒店"} style={styles.view_img} img={require('../img/kinds/jiudian.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"休闲"} style={styles.view_img} img={require('../img/kinds/xiuxian.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"外卖"} style={styles.view_img} img={require('../img/kinds/waimai.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                         </View>
                         <View style={styles.kind_second}>
                             <ImageButton name={"美发"} style={styles.view_img2} img={require('../img/kinds/meifa.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"闪购"} style={styles.view_img2} img={require('../img/kinds/天天闪购.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"旅游"} style={styles.view_img2} img={require('../img/kinds/旅游主题_沙滩.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"机票"} style={styles.view_img2} img={require('../img/kinds/旅游主题_飞机票.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"教育"} style={styles.view_img2} img={require('../img/kinds/培训.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                         </View>
                         <View style={styles.kind_second}>
                             <ImageButton name={"景点"} style={styles.view_img2} img={require('../img/kinds/景点.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"装修"} style={styles.view_img2} img={require('../img/kinds/装修.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"跑腿"} style={styles.view_img2} img={require('../img/kinds/跑步.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"信用卡"} style={styles.view_img2} img={require('../img/kinds/信用卡.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                             <ImageButton name={"全部分类"} style={styles.view_img2} img={require('../img/kinds/分类管理.png')}
-                                         method={this.alertButton}/>
+                                         method={this.alertButton.bind(this)}/>
                         </View>
                         <View style={{width: width, marginTop: 10, marginBottom: 10}}>
                             <Text style={{fontSize: 13, textAlign: 'center', color: 'gray'}}>—— 猜 你 喜 欢 ——</Text>
@@ -191,12 +205,30 @@ class homePage extends Component {
                         </View>
                     </ScrollView>
                 </View>
+                <AwesomeAlert
+                    show={this.state.isShow}//是否展示
+                    title="Sorry.."//标题
+                    message={this.state.message}//弹窗内容
+                    closeOnTouchOutside={true}//见名知意
+                    closeOnHardwareBackPress={true}//
+                    showCancelButton={true}
+                    showConfirmButton={true}
+                    confirmText="确定"
+                    cancelText="取消"
+                    confirmButtonColor="orange"
+                    cancelButtonColor="gray"
+                    onConfirmPressed={()=>{this.hideAlert()}}
+                    onCancelPressed={()=>{this.hideAlert()}}
+                    contentContainerStyle={{width:width/1.5, height:width/2.5}}//弹出框样式
+                    messageStyle={{fontSize:18}}//消息样式
+                    cancelButtonStyle={{margin:15}}//取消按钮样式
+                    confirmButtonStyle={{margin:15}}//确认按钮样式
+                />
                 <ActionButton position='right' verticalOrientation='up' buttonColor="rgba(231,76,60,1)">
                     <ActionButton.Item size={66} buttonColor='#9b59b6' title="百度搜索" onPress={this.searchBaidu}>
                         <Icon name="md-search" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
-                    <ActionButton.Item size={66} buttonColor='#3498db' title="扫一扫" onPress={() => {
-                    }}>
+                    <ActionButton.Item size={66} buttonColor='#3498db' title="扫一扫" onPress={() =>this.props.navigation.navigate('codeScanner')}>
                         <Icon name="md-qr-scanner" style={styles.actionButtonIcon}/>
                     </ActionButton.Item>
                     <ActionButton.Item size={66} buttonColor='#1abc9c' title="二维码"
@@ -216,10 +248,16 @@ const homeList = StackNavigator({
         }},
         adCode: {screen: adCodePage,
         navigationOptions:{
-            headerTitle:"二维码",
+            headerTitle:"我的二维码",
             headerTitleStyle:{marginLeft:width/2.5,color:'gray'},
             headerLeft:null,
             gesturesEnabled:true
+        }},
+        codeScanner:{screen:qrcodeScanner,
+        navigationOptions:{
+            headerTitle: "扫描二维码",
+            headerTitleStyle: {color:"gray"},
+            gesturesEnabled: true
         }}
     },
     {

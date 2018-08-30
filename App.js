@@ -15,6 +15,10 @@ import aroundPage from "./pages/aroundPage";
 import orderPage from "./pages/orderPage";
 import {adCodePage} from "./pages/homes/adCodePage";
 
+
+
+
+
 //这里不能用TabBavigator
 const pages = createBottomTabNavigator({
     home:{screen:homePage,
