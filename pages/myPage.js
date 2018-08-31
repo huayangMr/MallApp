@@ -143,9 +143,9 @@ const styles = StyleSheet.create({
     up:{flex: 1,flexDirection: 'column',justifyContent:'space-around',alignItems: 'center',backgroundColor:'orange'},
     down:{flex:1,flexDirection: 'column'},
     headImg:{width:width/4,height:width/4,borderWidth:0.5,borderRadius:60,backgroundColor: 'white',justifyContent:'center',alignItems: 'center'},
-    titleImg:{marginLeft: 40,width:width/10,height:width/10,justifyContent:'center',alignItems: 'center'},
-    list:{flexDirection:'row',justifyContent:'flex-start',width:width,height:height/15,backgroundColor:'white'},
-    listMsg:{flex:8,paddingTop:height/45 ,marginLeft: 60,textAlign: 'left',fontSize:20}
+    titleImg:{marginTop: 20,marginLeft: 40,width:width/15,height:width/15,justifyContent:'center',alignItems: 'center'},
+    list:{borderWidth: 0.2,flexDirection:'row',justifyContent:'flex-start',width:width,height:height/15,backgroundColor:'white'},
+    listMsg:{flex:8,paddingTop:height/45 ,marginLeft: 60,textAlign: 'left',fontSize:20,letterSpacing: 5}
 });
 
 export default mypages;
